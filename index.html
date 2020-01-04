@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Clock</title>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+	<link rel="stylesheet prefetch" type="text/css" href="https://fonts.googleapis.com/css?family=Poiret+One">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js">
+		
+	</script>
+	<style type="text/css">
+		.clock{
+			background: #ececec;
+			width:300px;
+			height: 300px;
+			margin: 8% auto 0;
+			border-radius: 50%;
+			border: 14px solid #333;
+			position: relative;
+			box-shadow: 0 2vw 4vw -1vw rgba(0,0,0,0.8);
+		}
+		.dot{
+			width: 14px;
+			height: 14px;
+			border-radius: 50%;
+			background: #000;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			margin: auto;
+			position: absolute;
+			z-index: 10;
+			box-shadow: 0 2px 4px -1px black;
+		}
+		.hour-hand{
+			position: absolute;
+			z-index: 5;
+			width: 7px;
+			height: 65px;
+			background: blue;
+			top:79px;
+			transform-origin: 50% 72px;
+			left: 50%;
+			margin-left: -2px;
+			border-top-left-radius: 50%;
+			border-top-right-radius: 50%;
+			
+		}
+		.minute-hand{
+			position: absolute;
+			z-index: 6;
+			width: 4px;
+			height: 100px;
+			background: #000;
+			top:46px;
+			transform-origin: 50% 105px;
+			left: 50%;
+			margin-left: -2px;
+			border-top-left-radius: 50%;
+			border-top-right-radius: 50%;
+			
+		}
+		.second-hand{
+			position: absolute;
+			z-index: 7;
+			width: 2px;
+			height: 120px;
+			background: red;
+			top:26px;
+			transform-origin: 50% 125px;
+			left: 50%;
+			margin-left: -1px;
+			border-top-left-radius: 50%;
+			border-top-right-radius: 50%;
+			
+		}
+		span{
+			display: inline-block;
+			position: absolute;
+			color: #222;
+			font-size: 22px;
+			font-family: 'Poiret One';
+			font-weight: 700;
+			z-index: 4;
+		}
+		.h12{
+			top: 30px;
+			left: 50%;
+			margin-left: -9px;
+
+		}
+		.h3{
+			top: 140px;
+			right: 30px;
+
+		}
+		.h6{
+			bottom: 30px;
+			left: 50%;
+			margin-left: -5px;
+		}
+		.h9{
+			left: 32px;
+			top: 140px;
+		}
+		.diallines{
+			position: absolute;
+			z-index: 2;
+			width: 2px;
+			height: 14px;
+			background: #666;
+			left: 50%;
+			margin-left: -1px;
+			transform-origin: 50% 150px;
+		}
+		.diallines: nth-of-type(5n){
+			position: absolute;
+			z-index: 2;
+			width: 2px;
+			height: 14px;
+			background: #666;
+			left: 50%;
+			margin-left: -1px;
+			transform-origin: 50% 150px;
+		}
+		.date{
+			position: absolute;
+			width: 120px;
+			height: 20px;
+			border-radius: 7px;
+			background-color: #888;
+			text-align: center;
+			line-height: 20px;
+			color: #fff;
+			font-size: 11px;
+			top: 80px;
+			left: 50%;
+			margin-left: -60px;
+			font-weight: 700;
+			z-index: 3;
+			letter-spacing: 3px;
+		}
+		.day{
+			position: absolute;
+			width: 120px;
+			height: 20px;
+			border-radius: 7px;
+			background-color: #888;
+			text-align: center;
+			line-height: 20px;
+			color: #fff;
+			font-size: 11px;
+			top: 200px;
+			left: 50%;
+			margin-left: -60px;
+			font-weight: 700;
+			z-index: 3;
+			letter-spacing: 3px;
+		}
+		.number{
+			--rotation:0;
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			text-align: center;
+			transform:rotate(var(--rotation));
+			
+
+		}
+		.n1{--rotation: 30deg;}
+		.n2{--rotation: 60deg;}
+		.n3{--rotation: 90deg;}
+		.n4{--rotation: 120deg;}
+		.n5{--rotation: 150deg;}
+		.n6{--rotation: 180deg;}
+		.n7{--rotation: 210deg;}
+		.n8{--rotation: 240deg;}
+		.n9{--rotation: 270deg;}
+		.n10{--rotation: 300deg;}
+		.n11{--rotation: 330deg;}
+		
+
+		/*.hand{
+
+			--rotation:0;
+			position: absolute;
+			bottom:50%;
+			left: 50%;
+			transform-origin: bottom;
+			background-color: red;
+			border: 1px solid white;
+			border-top-left-radius: 10px;
+			border-top-right-radius: 10px;
+			z-index: 10;
+			transform: translateX(-50%) rotate(calc(var(--rotation) * 1deg));
+		}
+		.hand .second-hand{
+			width: 3px;
+			height: 140px;
+			background-color: red;
+			}
+			.hand .minute-hand{
+			width: 7px;
+			height: 90px;
+			background-color: black;
+			}
+			.hand .hour-hand{
+			width: 12px;
+			height: 50px;
+			background-color: black;
+			}*/
+			
+	</style>
+</head>
+<body>
+	<div class="clock" id="clock">
+		<div>
+			<div class="date" id="date"></div>
+			<div class="day" id="day"></div>
+		</div>
+		<div class="dot"></div>
+		<div class="hand">
+			<div class="hour-hand" id="hour"></div>
+			<div class="minute-hand" id="min"></div>
+			<div class="second-hand" id="sec"></div>
+		</div>
+		<div>
+			<span class="number n1">1</span>
+			<span class="number n2">2</span>
+			<span class="number n3">3</span>
+			<span class="number n4">4</span>
+			<span class="number n5">5</span>
+			<span class="number n6">6</span>
+			<span class="number n7">7</span>
+			<span class="number n8">8</span>
+			<span class="number n9">9</span>
+			<span class="number n10">10</span>
+			<span class="number n11">11</span>
+			<span class="number n12">12</span>
+		</div>
+		<div class="diallines" id="diallines"></div>
+	</div>
+<script type="text/javascript">
+	setInterval(updateClock, 1000)
+
+	const secDiv = document.getElementById('sec');
+	const minDiv = document.getElementById('min');
+	const hourDiv = document.getElementById('hour');
+
+
+	/*const hourHand = document.querySelector('[hour-hand]');
+	const minuteHand 	 = document.querySelector('[minute-hand]');
+	const secondHand  = document.querySelector('[second-hand]');*/
+
+	function updateClock(){
+		let date = new Date();
+		
+		let sec = date.getSeconds() / 60;	
+		let min = date.getMinutes() / 60;
+		let hour = date.getHours() / 12;
+
+		secDiv.style.transform = "rotate(" + (sec * 360) + "deg)";
+		minDiv.style.transform = "rotate(" + (min * 360) + "deg)";
+		hourDiv.style.transform = "rotate(" + (hour * 360) + "deg)";
+
+
+	}
+	updateClock();
+
+	
+	/*function setRotation(element, rotationRatio){
+		element.style.setProperty('--rotation', rotationRatio * 360)
+
+	}*/
+</script>
+</body>
+</html>
